@@ -7,8 +7,8 @@ const foodSchema = new mongoose.Schema({
   discount_price:{type:Number,require:true},
   stock_quantity: { type: Number, require: true },
   rating: { type: Number, defaultValue: 0.0 },
-  category:{type:Strin},
-  image_url:{type:string}
+  category:{type:String},
+  image_url:{type:String}
 });
 
 module.exports = mongoose.models.Food || mongoose.model('Food', foodSchema);
