@@ -1,11 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const userRoutes = require("./routers/users_router");
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Replace `<pritp2509>` with your actual MongoDB password and ensure it is secured.
-const mongoUri = "mongodb+srv://pritp300:pritp2509@patel.1a6gz.mongodb.net/patel?retryWrites=true&w=majority";
+const mongoUri = "mongodb://localhost:27017";
 
 // Connect to MongoDB
 mongoose
@@ -19,14 +20,8 @@ mongoose
 // Middleware
 app.use(express.json());
 
-// Import Models
-const User = require('./models/user');
-const Review = require('./models/review');
-const Payment = require('./models/payment');
-const OrderItem = require('./models/orderitem');
-const Order = require('./models/order');
-const Food = require('./models/food');
-const Cart = require('./models/cart');
+// Use the routes for user-related endpoints
+app.use("/users", userRoutes);
 
 // Basic Route
 app.get("/", (req, res) => {

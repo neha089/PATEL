@@ -1,7 +1,7 @@
 const express = require('express');
-const { body, param } = require('express-validator'); // Import validation functions
+const { body, param } = require('express-validator');
 const router = express.Router();
-const userController = require('../controllers/userController');
+const userController = require('../controllers/users_controller');
 
 // Helper function to handle validation errors
 const validateRequest = (req, res, next) => {
@@ -32,12 +32,7 @@ router.post(
 );
 
 // Get User
-router.get(
-  '/:id',
-  [param('id').isMongoId().withMessage('ID must be a valid MongoDB ID')],
-  validateRequest,
-  userController.getUser
-);
+
 
 // Update User
 router.put(
@@ -65,4 +60,12 @@ router.delete(
   userController.deleteUser
 );
 
+// Get All Users
+router.get('/all', userController.getAllUsers);
+router.get(
+  '/:id',
+  [param('id').isMongoId().withMessage('ID must be a valid MongoDB ID')],
+  validateRequest,
+  userController.getUser
+);
 module.exports = router;
